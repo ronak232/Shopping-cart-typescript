@@ -20,9 +20,9 @@ export const Store = () => {
     dispatch(apiCallThunk());
   }, []);
 
-  const handleAddedItems = (product: IProduct): void => {
+  const handleAddedItems = (product: IProduct):void => {
     dispatch(addToCart(product));
-    console.log(product);
+    console.log(product)
   };
 
   return (
