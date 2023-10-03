@@ -2,8 +2,8 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   IProduct,
   apiCallThunk,
-} from "../redux/features/Productslice/ProductSlices";
-import { addToCart } from "../redux/features/Productslice/ProductSlices";
+} from "../store/redux/features/Productslice/ProductSlices";
+import { addToCart } from "../store/redux/features/Productslice/ProductSlices";
 import { useEffect } from "react";
 import { AppDispatch, RootState } from "../store/store";
 import { Button, Card, Col, Row } from "react-bootstrap";

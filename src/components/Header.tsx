@@ -1,8 +1,14 @@
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { BiCartAlt } from "react-icons/bi";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/store";
 
 export const Header = () => {
+  const { cartItems } = useSelector(
+    (state: RootState) => state.cartItems
+  );
+
   return (
     <Navbar className="bg-white shadow mb-3">
       <Container>
@@ -23,7 +29,7 @@ export const Header = () => {
               className="rounded bg-danger circle"
               style={{ width: "1.2rem", height: "1rem" }}
             >
-              7
+              {cartItems.length}
             </span>
             <BiCartAlt />
           </Button>
