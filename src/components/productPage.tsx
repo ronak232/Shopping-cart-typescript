@@ -1,9 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import {
   IProduct,
+  IProductState,
   apiCallThunk,
 } from "../store/redux/features/Productslice/ProductSlices";
-import { addToCart } from "../store/redux/features/Productslice/ProductSlices";
+import { addToCart } from "../store/redux/features/CartItemsSlice/CartItemSlice";
 import { useEffect } from "react";
 import { AppDispatch, RootState } from "../store/store";
 import { Button, Card, Col, Row } from "react-bootstrap";
@@ -20,9 +21,8 @@ export const Store = () => {
     dispatch(apiCallThunk());
   }, []);
 
-  const handleAddedItems = (product: IProduct):void => {
+  const handleAddedItems = (product: IProduct): void => {
     dispatch(addToCart(product));
-    console.log(product)
   };
 
   return (

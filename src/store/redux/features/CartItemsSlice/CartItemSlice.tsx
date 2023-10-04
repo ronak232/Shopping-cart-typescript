@@ -16,7 +16,6 @@ export interface InitialCartState {
   error: string;
 }
 
-
 const initialState: InitialCartState = {
   cartItems: [],
   loading: true,
@@ -30,6 +29,9 @@ const cartSlice = createSlice({
     handleRemove: (state, action) => {
       state.loading = action.payload;
     },
+    addToCart:(state, action) =>{
+      state.cartItems.push(action.payload)
+    }
   },
   // extraReducers: (builder) => {
   //   builder
@@ -47,4 +49,5 @@ const cartSlice = createSlice({
   // },
 });
 
+export const {addToCart} = cartSlice.actions
 export default cartSlice.reducer;

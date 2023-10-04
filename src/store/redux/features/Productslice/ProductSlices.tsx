@@ -42,9 +42,9 @@ const productSlice = createSlice({
   name: "getproducts",
   initialState,
   reducers: {
-    addToCart: (state, action: PayloadAction<IProduct>) => {
-      state.products.push(action.payload);
-    },
+    // addToCart: (state, action: PayloadAction<IProduct>) => {
+    
+    // },
   },
   extraReducers: (builder) => {
     builder
@@ -61,5 +61,5 @@ const productSlice = createSlice({
   },
 });
 
-export const { addToCart } = productSlice.actions;
+// export const { addToCart } = productSlice.actions;
 export default productSlice.reducer;
