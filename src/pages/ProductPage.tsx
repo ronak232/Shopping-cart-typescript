@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import {
   IProduct,
-  IProductState,
   apiCallThunk,
 } from "../store/redux/features/Productslice/ProductSlices";
 import { addToCart } from "../store/redux/features/CartItemsSlice/CartItemSlice";

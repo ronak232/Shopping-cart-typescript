@@ -41,11 +41,7 @@ const initialState: IProductState = {
 const productSlice = createSlice({
   name: "getproducts",
   initialState,
-  reducers: {
-    // addToCart: (state, action: PayloadAction<IProduct>) => {
-    
-    // },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(apiCallThunk.pending, (state) => {

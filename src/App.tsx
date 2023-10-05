@@ -1,8 +1,8 @@
 import { Container } from "react-bootstrap";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
-import { Home } from "./components/Home";
-import { Store } from "./components/ProductPage";
+import { Home } from "./pages/Home";
+import { Store } from "./pages/ProductPage";
 import { About } from "./components/About";
 import { Header } from "./components/Header";
 import { Cart } from "./pages/Cart";
