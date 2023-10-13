@@ -26,12 +26,12 @@ const cartSlice = createSlice({
   name: "artproducts",
   initialState,
   reducers: {
-    handleRemove: (state, action) => {
-      state.cartItems.filter((item) => item.id !== action.payload);
+    addToCart: (state, action) => {
+      state.cartItems.push(action.payload);
     },
-    addToCart:(state, action) =>{
-      state.cartItems.push(action.payload)
-    }
+    handleRemove: (state, action) => {
+      state.cartItems.filter((item) => item.id !== action.payload.id);
+    },
   },
   // extraReducers: (builder) => {
   //   builder
@@ -49,5 +49,5 @@ const cartSlice = createSlice({
   // },
 });
 
-export const {addToCart, handleRemove} = cartSlice.actions
+export const { addToCart, handleRemove } = cartSlice.actions;
 export default cartSlice.reducer;

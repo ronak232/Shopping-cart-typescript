@@ -26,7 +26,7 @@ export const Store = () => {
 
   return (
     <>
-      <Row>
+      <Row className="container m-auto">
         {products?.map((items, index) => {
           return (
             <Col md={4} className="product p-2" key={index}>

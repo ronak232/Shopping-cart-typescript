@@ -10,11 +10,10 @@ export function Cart() {
 
   const handleRemoveCartItem = (id: number) => {
     dispatch(handleRemove(id));
-    console.log(id)
   };
 
   return (
-    <div>
+    <div className="container">
       <h2>Your Cart</h2>
       <Col sm={12}>
         {cartItems?.map((items) => {
@@ -29,7 +28,7 @@ export function Cart() {
               </picture>
               <h4 className="product__title">{items.title}</h4>
               <span>{formatCurrency(items.price)}</span>
-              <div>
+              <div className="d-flex justify-space-between">
                 <Col style={{ display: "flex", flexWrap: "wrap" }}>
                   <Button
                     className=""
@@ -37,7 +36,7 @@ export function Cart() {
                   >
                     Remove
                   </Button>
-                  <div>
+                  <div >
                     <Button className="">+</Button>
                     <Button className="">-</Button>
                   </div>
