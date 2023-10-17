@@ -23,14 +23,18 @@ const initialState: InitialCartState = {
 };
 
 const cartSlice = createSlice({
-  name: "artproducts",
+  name: "cartproducts",
   initialState,
   reducers: {
     addToCart: (state, action) => {
       state.cartItems.push(action.payload);
+      console.log(action.payload);
     },
     handleRemove: (state, action) => {
-      state.cartItems.filter((item) => item.id !== action.payload.id);
+      const removeCartItem = state.cartItems.filter((item) => {
+        return item.id !== action.payload;
+      });
+      state.cartItems = removeCartItem
     },
   },
   // extraReducers: (builder) => {

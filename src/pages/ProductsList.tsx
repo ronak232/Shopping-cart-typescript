@@ -9,15 +9,20 @@ import { AppDispatch, RootState } from "../store/store";
 import { Button, Card, Col, Row } from "react-bootstrap";
 import "../styles/store.scss";
 import { formatCurrency } from "../utilites/CurrencyFormatter";
+import { ThunkAction } from "@reduxjs/toolkit";
 
 export const Store = () => {
   const { products, loading, error } = useSelector(
     (state: RootState) => state.products
   );
-  const dispatch: AppDispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    dispatch(apiCallThunk());
+    if (products !== undefined) {
+      setTimeout(() => {
+        dispatch(apiCallThunk());
+      }, 2000);
+    }
   }, []);
 
   const handleAddedItems = (product: IProduct): void => {

@@ -36,7 +36,7 @@ export function Cart() {
                   >
                     Remove
                   </Button>
-                  <div >
+                  <div>
                     <Button className="">+</Button>
                     <Button className="">-</Button>
                   </div>
