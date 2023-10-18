@@ -18,7 +18,7 @@ export const Store = () => {
   const dispatch: AppDispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    if (products !== undefined) {
+    if (products !== null) {
       setTimeout(() => {
         dispatch(apiCallThunk());
       }, 2000);
