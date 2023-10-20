@@ -1,0 +1,9 @@
+<Suspense fallback="Loading...">
+                <PagesProductList />
+              </Suspense>
+
+
+              // Lazy Loading the store page
+const PagesProductList = React.lazy(async () => ({
+  default: (await import("./pages/ProductsList")).default,
+}));

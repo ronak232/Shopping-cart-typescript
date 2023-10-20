@@ -1,12 +1,14 @@
-import { Container } from "react-bootstrap";
-import "./App.css";
+import "./App.scss";
 import { Route, Routes } from "react-router-dom";
 import { Home } from "./pages/Home";
-import { Store } from "./pages/ProductsList";
 import { About } from "./pages/About";
 import { Header } from "./components/Header";
 import { Cart } from "./pages/Cart";
 import Footer from "./components/Footer";
+import React, { Suspense } from "react";
+
+// Lazy Loading the store page
+const PagesProductList = React.lazy(() => import("./pages/ProductsList"));
 
 function App() {
   return (
@@ -15,7 +17,14 @@ function App() {
       <div>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/store" element={<Store />} />
+          <Route
+            path="/store"
+            element={
+              <Suspense fallback={<div>Loading...</div>}>
+                <PagesProductList />
+              </Suspense>
+            }
+          />
           <Route path="/about" element={<About />} />
           <Route path="/cart" element={<Cart />} />
         </Routes>

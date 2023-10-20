@@ -36,21 +36,12 @@ const cartSlice = createSlice({
       });
       state.cartItems = removeCartItem
     },
+  // calculateTotalPriceAmount: (state, action):void =>{
+  //     let total_Amount = state.cartItems.reduce((previousValue, currentValue) => {
+  //        return()
+  //     }, 0)
+  //  }
   },
-  // extraReducers: (builder) => {
-  //   builder
-  //     .addCase((state, action) => {
-  //       state.loading = false;
-
-  //     })
-  //     .addCase(apiCallThunk.fulfilled, (state, action) => {
-  //       state.loading = false;
-  //       state.products.push(...(action.payload || []));
-  //     })
-  //     .addCase(apiCallThunk.rejected, (state, action) => {
-  //       state.loading = false;
-  //     });
-  // },
 });
 
 export const { addToCart, handleRemove } = cartSlice.actions;

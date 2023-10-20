@@ -8,16 +8,15 @@ import { store } from "./store/store.tsx";
 import { persistStore } from "redux-persist";
 import { PersistGate } from "redux-persist/integration/react";
 
-const persistor = persistStore(store)
+const persistor = persistStore(store);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading="" persistor={persistor}>
-      <BrowserRouter>
-
-        <App />
-      </BrowserRouter>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
       </PersistGate>
     </Provider>
   </React.StrictMode>

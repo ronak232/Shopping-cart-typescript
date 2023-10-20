@@ -34,7 +34,7 @@ export interface IProductState {
 // IntialState....
 const initialState: IProductState = {
   products: [],
-  loading: false,
+  loading: true,
   error: "",
 };
 

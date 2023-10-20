@@ -5,9 +5,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
 
 export const Header = () => {
-  const { cartItems } = useSelector(
-    (state: RootState) => state.cartItems
-  );
+  const { cartItems } = useSelector((state: RootState) => state.cartItems);
 
   return (
     <Navbar className="bg-white shadow mb-3">
@@ -23,6 +21,9 @@ export const Header = () => {
             About
           </Nav.Link>
         </Nav>
+        <Nav.Link to="/" as={NavLink} className="pe-3">
+          Sign in
+        </Nav.Link>
         <Nav.Link to="/cart" as={NavLink}>
           <Button className="position-relative" title="Cart">
             <span
