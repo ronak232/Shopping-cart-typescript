@@ -21,7 +21,7 @@ const Store = () => {
     if (products !== null) {
       setTimeout(() => {
         dispatch(apiCallThunk());
-      },1200);
+      }, 2000);
     }
   }, []);
 
@@ -32,37 +32,68 @@ const Store = () => {
   return (
     <>
       <Container>
-        {loading ? (
-          <Row className="m-auto">
-            {products?.map((items, index) => {
-              return (
-                <Col md={4} className="product" key={index}>
-                  <Card className="product__card">
-                    <Card.Img
-                      className="product__img card-img-top"
-                      src={items.image}
-                      alt=""
-                    />
-                    <h4 className="product__title">{items.title}</h4>
-                    <span>{formatCurrency(items.price)}</span>
-                    <Button
-                      className=""
-                      aria-label="Cart-Btn"
-                      onClick={() => handleAddedItems(items)}
-                    >
-                      Add to Cart
-                    </Button>
-                  </Card>
-                </Col>
-              );
-            })}
-          </Row>
-        ) : (
-          Array.from({ length: 10 }, (_, i) => <SkeletonCard key={i} />)
-        )}
+        <Row className="m-auto">
+          {!loading
+            ? products?.map((items, index) => {
+                return (
+                  <Col md={4} className="product mt-2 mb-2" key={index}>
+                    <Card className="product__card">
+                      <Card.Img
+                        className="product__img card-img-top"
+                        src={items.image}
+                        alt=""
+                      />
+                      <h4 className="product__title">{items.title}</h4>
+                      <span>{formatCurrency(items.price)}</span>
+                      <Button
+                        className=""
+                        aria-label="Cart-Btn"
+                        onClick={() => handleAddedItems(items)}
+                      >
+                        Add to Cart
+                      </Button>
+                    </Card>
+                  </Col>
+                );
+              })
+            : Array.from({ length: 10}, (_, i) => <SkeletonCard key={i} />)}
+        </Row>
       </Container>
     </>
   );
 };
+
+{
+  /* <Container>
+{!loading ? (
+  <Row className="m-auto">
+    {products?.map((items, index) => {
+      return (
+        <Col md={4} className="product" key={index}>
+          <Card className="product__card">
+            <Card.Img
+              className="product__img card-img-top"
+              src={items.image}
+              alt=""
+            />
+            <h4 className="product__title">{items.title}</h4>
+            <span>{formatCurrency(items.price)}</span>
+            <Button
+              className=""
+              aria-label="Cart-Btn"
+              onClick={() => handleAddedItems(items)}
+            >
+              Add to Cart
+            </Button>
+          </Card>
+        </Col>
+      );
+    })}
+  </Row>
+) : (
+  Array.from({ length: 10 }, (_, i) => <SkeletonCard key={i} />)
+)}
+</Container> */
+}
 
 export default Store;

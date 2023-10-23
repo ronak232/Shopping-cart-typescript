@@ -1,13 +1,14 @@
+import { Col } from "react-bootstrap";
 import SkeletonLoadingEffect from "./SkeletonLoadingEffect";
 
 function SkeletonCard() {
   return (
 
-    <div className="card-bg">
+    <Col md={4} className="card-bg">
       <SkeletonLoadingEffect text="image" />
       <SkeletonLoadingEffect text="title" />
       <SkeletonLoadingEffect text="text" />
-    </div>
+    </Col>
   );
 }
 

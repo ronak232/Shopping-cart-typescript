@@ -20,7 +20,7 @@ function App() {
           <Route
             path="/store"
             element={
-              <Suspense fallback={<div>Loading...</div>}>
+              <Suspense>
                 <PagesProductList />
               </Suspense>
             }
@@ -29,7 +29,7 @@ function App() {
           <Route path="/cart" element={<Cart />} />
         </Routes>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }
