@@ -4,8 +4,9 @@ import { Home } from "./pages/Home";
 import { About } from "./pages/About";
 import { Header } from "./components/Header";
 import { Cart } from "./pages/Cart";
-import Footer from "./components/Footer";
+// import Footer from "./components/Footer";
 import React, { Suspense } from "react";
+// import SkeletonCard from "./components/SkeletonLoader/SkeletonCard";
 
 // Lazy Loading the store page
 const PagesProductList = React.lazy(() => import("./pages/ProductsList"));
@@ -20,7 +21,7 @@ function App() {
           <Route
             path="/store"
             element={
-              <Suspense>
+              <Suspense fallback={<div>Loading</div>}>
                 <PagesProductList />
               </Suspense>
             }

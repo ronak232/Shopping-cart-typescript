@@ -7,3 +7,13 @@
 const PagesProductList = React.lazy(async () => ({
   default: (await import("./pages/ProductsList")).default,
 }));
+
+ //   const productSearchFilter = filterSearchResults.filter((product) => {
+      //     return Object.values(product)
+      //       .join(" ")
+      //       .toLowerCase()
+      //       .includes(product.title.toLowerCase());
+      //   });
+      //   setFilterSearchResults(productSearchFilter);
+      // } else {
+      //   setFilterSearchResults(products);

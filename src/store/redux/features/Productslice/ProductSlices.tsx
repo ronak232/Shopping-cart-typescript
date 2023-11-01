@@ -10,14 +10,14 @@ export interface IProduct {
   image: string;
   quantity: number;
 }
+
 // Action
 export const apiCallThunk = createAsyncThunk(
   "getproducts/products",
   async () => {
     try {
-      const getProducts = await axios.get<IProduct[]>(
-        "https://fakestoreapi.com/products"
-      );
+      const apiUrl = "https://fakestoreapi.com/products";
+      const getProducts = await axios.get<IProduct[]>(apiUrl);
       return getProducts.data;
     } catch (err) {
       console.log("some error from api....");
@@ -29,6 +29,7 @@ export interface IProductState {
   products: IProduct[];
   loading: boolean;
   error: string;
+  filterSearchProducts: [];
 }
 
 // IntialState....
@@ -36,15 +37,30 @@ const initialState: IProductState = {
   products: [],
   loading: true,
   error: "",
+  filterSearchProducts: [],
 };
 
 const productSlice = createSlice({
   name: "getproducts",
   initialState,
-  reducers: {},
+  reducers: {
+    searchFilterProduct: (state, action: PayloadAction<string>) => {
+      const searchedProduct = state.filterSearchProducts.filter(
+        (products: IProduct) => {
+          console.log(
+            Object.values(products.title)
+              .join(" ")
+              .toLowerCase()
+              .includes(action.payload.toLowerCase())
+          );
+          console.log(searchedProduct);
+        }
+      );
+    },
+  },
   extraReducers: (builder) => {
     builder
-      .addCase(apiCallThunk.pending, (state) => {
+      .addCase(apiCallThunk.pending, (state, action) => {
         state.loading = false;
       })
       .addCase(apiCallThunk.fulfilled, (state, action) => {
@@ -57,4 +73,5 @@ const productSlice = createSlice({
   },
 });
 
+export const { searchFilterProduct } = productSlice.actions;
 export default productSlice.reducer;

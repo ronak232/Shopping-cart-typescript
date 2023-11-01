@@ -7,11 +7,11 @@ import { addToCart } from "../store/redux/features/CartItemsSlice/CartItemSlice"
 import { useEffect } from "react";
 import { AppDispatch, RootState } from "../store/store";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
-import "../styles/store.scss";
 import { formatCurrency } from "../utilites/CurrencyFormatter";
 import SkeletonCard from "../components/SkeletonLoader/SkeletonCard";
 
 const Store = () => {
+
   const { products, loading, error } = useSelector(
     (state: RootState) => state.products
   );
@@ -42,6 +42,7 @@ const Store = () => {
                         className="product__img card-img-top"
                         src={items.image}
                         alt=""
+                        loading="lazy"
                       />
                       <h4 className="product__title">{items.title}</h4>
                       <span>{formatCurrency(items.price)}</span>
@@ -56,44 +57,11 @@ const Store = () => {
                   </Col>
                 );
               })
-            : Array.from({ length: 10}, (_, i) => <SkeletonCard key={i} />)}
+            : Array.from({ length: 10 }, (_, i) => <SkeletonCard key={i} />)}
         </Row>
       </Container>
     </>
   );
 };
-
-{
-  /* <Container>
-{!loading ? (
-  <Row className="m-auto">
-    {products?.map((items, index) => {
-      return (
-        <Col md={4} className="product" key={index}>
-          <Card className="product__card">
-            <Card.Img
-              className="product__img card-img-top"
-              src={items.image}
-              alt=""
-            />
-            <h4 className="product__title">{items.title}</h4>
-            <span>{formatCurrency(items.price)}</span>
-            <Button
-              className=""
-              aria-label="Cart-Btn"
-              onClick={() => handleAddedItems(items)}
-            >
-              Add to Cart
-            </Button>
-          </Card>
-        </Col>
-      );
-    })}
-  </Row>
-) : (
-  Array.from({ length: 10 }, (_, i) => <SkeletonCard key={i} />)
-)}
-</Container> */
-}
 
 export default Store;
