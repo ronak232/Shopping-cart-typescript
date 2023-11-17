@@ -6,12 +6,13 @@ import { Header } from "./components/Header";
 import { Cart } from "./pages/Cart";
 // import Footer from "./components/Footer";
 import React, { Suspense } from "react";
-// import SkeletonCard from "./components/SkeletonLoader/SkeletonCard";
+import SkeletonCard from "./components/SkeletonLoader/SkeletonCard";
 
 // Lazy Loading the store page
 const PagesProductList = React.lazy(() => import("./pages/ProductsList"));
 
 function App() {
+  
   return (
     <>
       <Header />
@@ -21,7 +22,7 @@ function App() {
           <Route
             path="/store"
             element={
-              <Suspense fallback={<div>Loading</div>}>
+              <Suspense fallback={<SkeletonCard />}>
                 <PagesProductList />
               </Suspense>
             }

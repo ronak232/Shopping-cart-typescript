@@ -16,8 +16,7 @@ export const Header = () => {
   const inputElement = useRef<HTMLInputElement | null>(null);
   const dispatch = useDispatch();
 
-  // we can pass the generic type to useState to update the DOM element based on type
-  const [searchProducts, setSearchProducts] = useState<string>("");
+  const [searchProducts, setSearchProducts] = useState<string>(""); // we can pass the generic type to useState to update the DOM element based on type
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -27,15 +26,25 @@ export const Header = () => {
 
     if (searchProducts !== "") {
       dispatch(searchFilterProduct(searchProducts));
-    }
-    else{
-      products
+    } else {
+      products;
     }
   };
 
   return (
     <Navbar className="navbar-expand-lg navbar-light bg-light bg-white shadow mb-3">
       <Container className="justify-content-space">
+        <div className="">
+          <a className="navbar-brand" href="/">
+            <img
+              src="./src/assets/images/Shopping Bag.svg"
+              alt="Logo"
+              height="50"
+              className="d-inline-block align-text-top"
+              style={{width:"100%", height:"40px"}}
+            />
+          </a>
+        </div>
         <button
           className="navbar-toggler"
           type="button"
@@ -47,7 +56,7 @@ export const Header = () => {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div>
+        <Navbar.Collapse>
           <Nav className="me-auto">
             <Nav.Link to="/" as={NavLink} title="Home">
               Home
@@ -59,7 +68,7 @@ export const Header = () => {
               About
             </Nav.Link>
           </Nav>
-        </div>
+        </Navbar.Collapse>
         <div className="d-flex align-items-center justify-content-space">
           <form className="d-flex" role="search" onSubmit={handleSubmit}>
             <input
@@ -76,7 +85,7 @@ export const Header = () => {
             <Button className="position-relative" title="Cart">
               <span
                 className="rounded bg-danger circle"
-                style={{ width: "1.2rem", height: "1rem" }}
+                style={{ width: "1.2rem", height: "1.2rem" }}
               >
                 {cartItems.length}
               </span>

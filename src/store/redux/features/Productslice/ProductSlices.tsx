@@ -14,9 +14,10 @@ export interface IProduct {
 // Action
 export const apiCallThunk = createAsyncThunk(
   "getproducts/products",
-  async () => {
+   async () => {
     try {
       const apiUrl = "https://fakestoreapi.com/products";
+      
       const getProducts = await axios.get<IProduct[]>(apiUrl);
       return getProducts.data;
     } catch (err) {
