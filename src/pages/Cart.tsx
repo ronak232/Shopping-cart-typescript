@@ -6,7 +6,7 @@ import {
   handleRemove,
   clearAllCartItems,
 } from "../store/redux/features/CartItemsSlice/CartItemSlice";
-// import React, { useEffect, useState } from "react";
+
 
 export function Cart() {
   const { cartItems } = useSelector((state: RootState) => state.cartItems);
@@ -25,11 +25,14 @@ export function Cart() {
       <Container>
         <h2>Your Cart</h2>
         <Row>
-          <Col sm={12} md={10}>
+          <Col sm={12} md={10} className="cart">
             {cartItems.length > 0 ? (
               cartItems?.map((items) => {
                 return (
-                  <Card className="d-flex p-2 mb-2 mt-2" key={items.id}>
+                  <Card
+                    className="d-flex p-2 mb-2 mt-2 cart__product_list"
+                    key={items.id}
+                  >
                     <div className="mb-2">
                       <div>
                         <Card.Img
@@ -38,7 +41,7 @@ export function Cart() {
                           alt=""
                         />
                       </div>
-                      <h4 className="product__title">{items.title}</h4>
+                      <h4 className="cart__product_title">{items.title}</h4>
                       <span>{formatCurrency(items.price)}</span>
                     </div>
                     <div className="d-flex justify-space-between">
@@ -51,10 +54,19 @@ export function Cart() {
                           Remove
                         </Button>
                         <div>
-                          <Button className="" aria-label="quantity-increase">
+                          <Button
+                            className="qty-increment"
+                            aria-label="quantity-increase"
+                            role="increment"
+                          >
                             +
                           </Button>
-                          <Button className="" aria-label="quantity-decrease">
+                          <span>{items.quantity}</span>
+                          <Button
+                            className="qty-decrement"
+                            aria-label="quantity-decrease"
+                            role="decrement"
+                          >
                             -
                           </Button>
                         </div>
@@ -64,7 +76,7 @@ export function Cart() {
                 );
               })
             ) : (
-              <div>No Items in the Cart</div>
+              <div>Your shopping cart is empty</div>
             )}
           </Col>
           <Col sm={12} md={2}>
@@ -72,23 +84,21 @@ export function Cart() {
               className="w-100 p-2 mb-2 mt-2"
               style={{ height: "200px", backgroundColor: "#eeee" }}
             >
-              <h2>Total Price</h2>
+              <h2>Your total amount:</h2>
+              <span>{}</span>
             </Card>
+            <button>Procced to Checkout</button>
           </Col>
-          <div>
-            <button
-              style={{
-                border: "1px solid grey",
-                borderRadius: "4px",
-                cursor: "pointer",
-              }}
-              disabled={cartItems.length > 0 ? false : true}
-              onClick={() => clearCartItems()}
-            >
-              Clear Items
-            </button>
-          </div>
         </Row>
+        <div>
+          <button
+            className="remove_all-btn"
+            disabled={cartItems.length > 0 ? false : true}
+            onClick={() => clearCartItems()}
+          >
+            Empty Cart
+          </button>
+        </div>
       </Container>
     </>
   );

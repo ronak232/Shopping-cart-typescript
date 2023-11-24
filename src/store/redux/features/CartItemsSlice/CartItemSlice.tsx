@@ -26,8 +26,17 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action: PayloadAction<ICartItems>) => {
+      // Checking the item exist in the cart
+      const findItemCart = state.cartItems.find(
+        (item) => item.id === action.payload.id
+      );
+
+      if (findItemCart) {
+      
+      }
+      // });
+
       state.cartItems.push(action.payload);
-      console.log(action.payload);
     },
     handleRemove: (state, action: PayloadAction<number>) => {
       const removeCartItem = state.cartItems.filter((item) => {
@@ -35,16 +44,15 @@ const cartSlice = createSlice({
       });
       state.cartItems = removeCartItem;
     },
-    // calculateTotalPriceAmount: (state, action):void =>{
-    //     let total_Amount = state.cartItems.reduce((previousValue, currentValue) => {
-    //        return()
-    //     }, 0)
-    //  }
+    // calculateTotalPriceAmount: (state, action): void => {
+    //   state.cartItems.map((item) => item.price * item.quantity)
+    //   .reduce((total, value) => total + value, 0)}
+    // },
     clearAllCartItems: (state) => {
       state.cartItems = [];
     },
   },
 });
-console.log(cartSlice);
+
 export const { addToCart, handleRemove, clearAllCartItems } = cartSlice.actions;
 export default cartSlice.reducer;

@@ -17,3 +17,15 @@ const PagesProductList = React.lazy(async () => ({
       //   setFilterSearchResults(productSearchFilter);
       // } else {
       //   setFilterSearchResults(products);
+
+       const searchedProduct = state.filterSearchProducts.filter(
+        (products: IProduct) => {
+          console.log(
+            Object.values(products.title)
+              .join(" ")
+              .toLowerCase()
+              .includes(action.payload.toLowerCase())
+          );
+          console.log(searchedProduct);
+        }
+      );

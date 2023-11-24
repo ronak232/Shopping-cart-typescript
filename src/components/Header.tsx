@@ -11,24 +11,36 @@ import {
 
 export const Header = () => {
   const { cartItems } = useSelector((state: RootState) => state.cartItems);
+
   const { products } = useSelector((state: RootState) => state.products);
 
   const inputElement = useRef<HTMLInputElement | null>(null);
-  const dispatch = useDispatch();
 
   const [searchProducts, setSearchProducts] = useState<string>(""); // we can pass the generic type to useState to update the DOM element based on type
+ 
+  const [filterSearchProducts, setFilterSearchProducts] = useState([])
+  const [filterSearchResult, setfilterSearchResult] = useState([])
+
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
   };
   const handleSearchProducts = (): void => {
     setSearchProducts(inputElement.current?.value ?? "");
+    const searchedProduct = filterSearchProducts.filter(
+      (products: IProduct) => {
+        if(true){
 
-    if (searchProducts !== "") {
-      dispatch(searchFilterProduct(searchProducts));
-    } else {
-      products;
-    }
+          console.log(
+            Object.values(products.title)
+            .join(" ")
+            .toLowerCase()
+            .includes(products.title.toLowerCase())
+            );
+          }
+        console.log(searchedProduct);
+      }
+    );
   };
 
   return (
@@ -41,7 +53,7 @@ export const Header = () => {
               alt="Logo"
               height="50"
               className="d-inline-block align-text-top"
-              style={{width:"100%", height:"40px"}}
+              style={{ width: "100%", height: "40px" }}
             />
           </a>
         </div>

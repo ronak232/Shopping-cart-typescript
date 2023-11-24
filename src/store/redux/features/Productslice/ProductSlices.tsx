@@ -17,7 +17,6 @@ export const apiCallThunk = createAsyncThunk(
    async () => {
     try {
       const apiUrl = "https://fakestoreapi.com/products";
-      
       const getProducts = await axios.get<IProduct[]>(apiUrl);
       return getProducts.data;
     } catch (err) {
@@ -30,7 +29,7 @@ export interface IProductState {
   products: IProduct[];
   loading: boolean;
   error: string;
-  filterSearchProducts: [];
+  filterSearchProducts: string;
 }
 
 // IntialState....
@@ -38,7 +37,7 @@ const initialState: IProductState = {
   products: [],
   loading: true,
   error: "",
-  filterSearchProducts: [],
+  filterSearchProducts: '',
 };
 
 const productSlice = createSlice({
@@ -46,17 +45,7 @@ const productSlice = createSlice({
   initialState,
   reducers: {
     searchFilterProduct: (state, action: PayloadAction<string>) => {
-      const searchedProduct = state.filterSearchProducts.filter(
-        (products: IProduct) => {
-          console.log(
-            Object.values(products.title)
-              .join(" ")
-              .toLowerCase()
-              .includes(action.payload.toLowerCase())
-          );
-          console.log(searchedProduct);
-        }
-      );
+     state.filterSearchProducts = action.payload
     },
   },
   extraReducers: (builder) => {
