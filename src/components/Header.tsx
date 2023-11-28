@@ -17,10 +17,9 @@ export const Header = () => {
   const inputElement = useRef<HTMLInputElement | null>(null);
 
   const [searchProducts, setSearchProducts] = useState<string>(""); // we can pass the generic type to useState to update the DOM element based on type
- 
-  const [filterSearchProducts, setFilterSearchProducts] = useState([])
-  const [filterSearchResult, setfilterSearchResult] = useState([])
 
+  const [filterSearchProducts, setFilterSearchProducts] = useState([]);
+  const [filterSearchResult, setfilterSearchResult] = useState([]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -29,15 +28,14 @@ export const Header = () => {
     setSearchProducts(inputElement.current?.value ?? "");
     const searchedProduct = filterSearchProducts.filter(
       (products: IProduct) => {
-        if(true){
-
+        if (true) {
           console.log(
             Object.values(products.title)
-            .join(" ")
-            .toLowerCase()
-            .includes(products.title.toLowerCase())
-            );
-          }
+              .join(" ")
+              .toLowerCase()
+              .includes(products.title.toLowerCase())
+          );
+        }
         console.log(searchedProduct);
       }
     );
@@ -45,42 +43,44 @@ export const Header = () => {
 
   return (
     <Navbar className="navbar-expand-lg navbar-light bg-light bg-white shadow mb-3">
-      <Container className="justify-content-space">
-        <div className="">
-          <a className="navbar-brand" href="/">
-            <img
-              src="./src/assets/images/Shopping Bag.svg"
-              alt="Logo"
-              height="50"
-              className="d-inline-block align-text-top"
-              style={{ width: "100%", height: "40px" }}
-            />
-          </a>
+      <Container>
+        <div className="flex items-center">
+          <div>
+            <a className="navbar-brand h-full" href="/">
+              <img
+                src="./src/assets/images/Shopping Bag.svg"
+                alt="Logo"
+                height="50"
+                className="d-inline-block align-text-top"
+                style={{ width: "100%", height: "40px" }}
+              />
+            </a>
+          </div>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <Navbar>
+            <Nav className="me-auto">
+              <Nav.Link to="/" as={NavLink} title="Home">
+                Home
+              </Nav.Link>
+              <Nav.Link to="/store" as={NavLink} title="Store">
+                Store
+              </Nav.Link>
+              <Nav.Link to="/about" as={NavLink} title="About Page">
+                About
+              </Nav.Link>
+            </Nav>
+          </Navbar>
         </div>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <Navbar.Collapse>
-          <Nav className="me-auto">
-            <Nav.Link to="/" as={NavLink} title="Home">
-              Home
-            </Nav.Link>
-            <Nav.Link to="/store" as={NavLink} title="Store">
-              Store
-            </Nav.Link>
-            <Nav.Link to="/about" as={NavLink} title="About Page">
-              About
-            </Nav.Link>
-          </Nav>
-        </Navbar.Collapse>
         <div className="d-flex align-items-center justify-content-space">
           <form className="d-flex" role="search" onSubmit={handleSubmit}>
             <input

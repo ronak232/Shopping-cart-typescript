@@ -1,5 +1,13 @@
-.remove_all-btn{
-    border: 1px solid #d0cbcb;
-    border-radius: 5px;
-    cursor: pointer;
+// .remove_all-btn{
+//     border: 1px solid #d0cbcb;
+//     border-radius: 5px;
+//     cursor: pointer;
+//     padding: 10px 8px;
+// }
+.hide-empty-btn{
+    display: none;
+}
+
+.show-empty-btn{
+   display: block;
 }

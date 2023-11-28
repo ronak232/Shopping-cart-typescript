@@ -35,14 +35,14 @@ const Store = () => {
           {products?.map((items, index) => {
             return (
               <Col md={4} className="product mt-2 mb-2" key={index}>
-                <Card className="product__cardp p-2">
+                <Card className="product__cardp p-2 h-100">
                   <Card.Img
-                    className="product__img card-img-top"
+                    className="product__img bg-cover h-full"
                     src={items.image}
                     alt=""
                     loading="lazy"
                   />
-                  <h4 className="product__title">{items.title}</h4>
+                  <h4 className="product__title truncate">{items.title}</h4>
                   <span>{formatCurrency(items.price)}</span>
                   <Button
                     className=""

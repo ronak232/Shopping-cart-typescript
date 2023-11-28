@@ -6,18 +6,30 @@ import {
   handleRemove,
   clearAllCartItems,
 } from "../store/redux/features/CartItemsSlice/CartItemSlice";
-
+import { useState } from "react";
 
 export function Cart() {
   const { cartItems } = useSelector((state: RootState) => state.cartItems);
   const dispatch: AppDispatch = useDispatch<AppDispatch>();
+
+  const [showDisableEmptyCart, setShowDisableEmptyCart] = useState(true);
+
+  // const toggleEmptyCartBtn = () =>{
+  //   if(cartItems.length > 0)  {
+  //     setShowDisableEmptyCart(showDisableEmptyCart)
+
+  //   }
+  // }
 
   const handleRemoveCartItem = (id: number) => {
     dispatch(handleRemove(id));
   };
 
   const clearCartItems = () => {
-    dispatch(clearAllCartItems());
+    if (cartItems.length > 0) {
+      dispatch(clearAllCartItems());
+      setShowDisableEmptyCart(!showDisableEmptyCart);
+    }
   };
 
   return (
@@ -30,7 +42,7 @@ export function Cart() {
               cartItems?.map((items) => {
                 return (
                   <Card
-                    className="d-flex p-2 mb-2 mt-2 cart__product_list"
+                    className="flex p-2 mb-2 mt-2 cart__product_list"
                     key={items.id}
                   >
                     <div className="mb-2">
@@ -44,33 +56,31 @@ export function Cart() {
                       <h4 className="cart__product_title">{items.title}</h4>
                       <span>{formatCurrency(items.price)}</span>
                     </div>
-                    <div className="d-flex justify-space-between">
-                      <Col style={{ display: "flex", flexWrap: "wrap" }}>
-                        <Button
-                          className=""
-                          onClick={() => handleRemoveCartItem(items.id)}
-                          aria-label="product-cards"
+                    <div className="flex flex-auto">
+                      <button
+                        className="bg-blue-400 rounded-lg px-3 py-0"
+                        onClick={() => handleRemoveCartItem(items.id)}
+                        aria-label="product-cards"
+                      >
+                        Remove
+                      </button>
+                      <span className="p-1">{items.quantity}</span>
+                      <div>
+                        <button
+                          className="rounded-lg bg-sky-500 qty-increment p-2 m-1"
+                          aria-label="quantity-increase"
+                          role="increment"
                         >
-                          Remove
-                        </Button>
-                        <div>
-                          <Button
-                            className="qty-increment"
-                            aria-label="quantity-increase"
-                            role="increment"
-                          >
-                            +
-                          </Button>
-                          <span>{items.quantity}</span>
-                          <Button
-                            className="qty-decrement"
-                            aria-label="quantity-decrease"
-                            role="decrement"
-                          >
-                            -
-                          </Button>
-                        </div>
-                      </Col>
+                          +
+                        </button>
+                        <button
+                          className="rounded-lg bg-sky-500 qty-decrement p-2 m-1"
+                          aria-label="quantity-decrease"
+                          role="decrement"
+                        >
+                          -
+                        </button>
+                      </div>
                     </div>
                   </Card>
                 );
@@ -78,6 +88,19 @@ export function Cart() {
             ) : (
               <div>Your shopping cart is empty</div>
             )}
+            <div
+              className={`${
+                cartItems.length > 0 ? "show-empty-btn" : "hide-empty-btn"
+              }`}
+            >
+              <button
+                className="remove_all-btn shadow-lg p-2 border-2 rounded-full"
+                disabled={!showDisableEmptyCart}
+                onClick={() => clearCartItems()}
+              >
+                Empty Cart
+              </button>
+            </div>
           </Col>
           <Col sm={12} md={2}>
             <Card
@@ -85,20 +108,11 @@ export function Cart() {
               style={{ height: "200px", backgroundColor: "#eeee" }}
             >
               <h2>Your total amount:</h2>
-              <span>{}</span>
+              <span>$1000</span>
             </Card>
             <button>Procced to Checkout</button>
           </Col>
         </Row>
-        <div>
-          <button
-            className="remove_all-btn"
-            disabled={cartItems.length > 0 ? false : true}
-            onClick={() => clearCartItems()}
-          >
-            Empty Cart
-          </button>
-        </div>
       </Container>
     </>
   );

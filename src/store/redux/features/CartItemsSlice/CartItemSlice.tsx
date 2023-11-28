@@ -27,16 +27,14 @@ const cartSlice = createSlice({
   reducers: {
     addToCart: (state, action: PayloadAction<ICartItems>) => {
       // Checking the item exist in the cart
-      const findItemCart = state.cartItems.find(
+      let findItemCart = state.cartItems.find(
         (item) => item.id === action.payload.id
       );
-
-      if (findItemCart) {
-      
+      if (!findItemCart) {
+        state.cartItems.push({ ...action.payload, quantity: 1 });
+      } else {
+        findItemCart.quantity += 1;
       }
-      // });
-
-      state.cartItems.push(action.payload);
     },
     handleRemove: (state, action: PayloadAction<number>) => {
       const removeCartItem = state.cartItems.filter((item) => {
@@ -44,12 +42,14 @@ const cartSlice = createSlice({
       });
       state.cartItems = removeCartItem;
     },
-    // calculateTotalPriceAmount: (state, action): void => {
-    //   state.cartItems.map((item) => item.price * item.quantity)
-    //   .reduce((total, value) => total + value, 0)}
-    // },
+
     clearAllCartItems: (state) => {
       state.cartItems = [];
+    },
+    calculateTotalPriceAmount: (state): void => {
+      state.cartItems
+        .map((item) => item.price * item.quantity)
+        .reduce((total, value) => total + value, 0);
     },
   },
 });
