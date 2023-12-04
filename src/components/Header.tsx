@@ -6,13 +6,11 @@ import { RootState } from "../store/store";
 import { useRef, useState } from "react";
 import {
   IProduct,
-  searchFilterProduct,
+  searchFilterQuery,
 } from "../store/redux/features/Productslice/ProductSlices";
 
 export const Header = () => {
   const { cartItems } = useSelector((state: RootState) => state.cartItems);
-
-  const { products } = useSelector((state: RootState) => state.products);
 
   const inputElement = useRef<HTMLInputElement | null>(null);
 
@@ -26,23 +24,11 @@ export const Header = () => {
   };
   const handleSearchProducts = (): void => {
     setSearchProducts(inputElement.current?.value ?? "");
-    const searchedProduct = filterSearchProducts.filter(
-      (products: IProduct) => {
-        if (true) {
-          console.log(
-            Object.values(products.title)
-              .join(" ")
-              .toLowerCase()
-              .includes(products.title.toLowerCase())
-          );
-        }
-        console.log(searchedProduct);
-      }
-    );
+    
   };
 
   return (
-    <Navbar className="navbar-expand-lg navbar-light bg-light bg-white shadow mb-3">
+    <Navbar className="navbar-expand-lg shadow m-0 bg-cyan-50">
       <Container>
         <div className="flex items-center">
           <div>
@@ -94,10 +80,9 @@ export const Header = () => {
             />
           </form>
           <Nav.Link to="/cart" as={NavLink}>
-            <Button className="position-relative" title="Cart">
+            <Button className="position-relative mx-2 p-2" title="Cart">
               <span
-                className="rounded bg-danger circle"
-                style={{ width: "1.2rem", height: "1.2rem" }}
+                className="rounded-full bg-danger qty-circle p-1"
               >
                 {cartItems.length}
               </span>

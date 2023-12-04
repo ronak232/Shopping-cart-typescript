@@ -7,6 +7,7 @@ import {
   clearAllCartItems,
 } from "../store/redux/features/CartItemsSlice/CartItemSlice";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export function Cart() {
   const { cartItems } = useSelector((state: RootState) => state.cartItems);
@@ -41,6 +42,7 @@ export function Cart() {
             {cartItems.length > 0 ? (
               cartItems?.map((items) => {
                 return (
+                <Link to="/store"> 
                   <Card
                     className="flex p-2 mb-2 mt-2 cart__product_list"
                     key={items.id}
@@ -83,6 +85,7 @@ export function Cart() {
                       </div>
                     </div>
                   </Card>
+                  </Link> 
                 );
               })
             ) : (
@@ -94,7 +97,7 @@ export function Cart() {
               }`}
             >
               <button
-                className="remove_all-btn shadow-lg p-2 border-2 rounded-full"
+                className="remove_all-btn shadow-md p-2 border-2 rounded-md"
                 disabled={!showDisableEmptyCart}
                 onClick={() => clearCartItems()}
               >
@@ -104,13 +107,13 @@ export function Cart() {
           </Col>
           <Col sm={12} md={2}>
             <Card
-              className="w-100 p-2 mb-2 mt-2"
-              style={{ height: "200px", backgroundColor: "#eeee" }}
+              className="w-100 bg-slate-300 px-4 my-2"
+              
             >
               <h2>Your total amount:</h2>
               <span>$1000</span>
             </Card>
-            <button>Procced to Checkout</button>
+            <button className="bg-sky-500 p-2 text-white rounded-lg hover:text-sky-400">Procced to Checkout</button>
           </Col>
         </Row>
       </Container>

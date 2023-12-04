@@ -7,6 +7,7 @@ import { Cart } from "./pages/Cart";
 // import Footer from "./components/Footer";
 import React, { Suspense } from "react";
 import SkeletonCard from "./components/SkeletonLoader/SkeletonCard";
+// import Footer from "./components/Footer";
 
 // Lazy Loading the store page
 const PagesProductList = React.lazy(() => import("./pages/ProductsList"));
@@ -16,7 +17,7 @@ function App() {
   return (
     <>
       <Header />
-      <div>
+ 
         <Routes>
           <Route path="/" element={<Home />} />
           <Route
@@ -27,10 +28,9 @@ function App() {
               </Suspense>
             }
           />
-          <Route path="/about" element={<About />} />
+          <Route path="/about" element={<About />} />~
           <Route path="/cart" element={<Cart />} />
         </Routes>
-      </div>
       {/* <Footer /> */}
     </>
   );

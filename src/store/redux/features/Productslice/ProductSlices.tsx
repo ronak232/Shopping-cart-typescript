@@ -14,7 +14,7 @@ export interface IProduct {
 // Action
 export const apiCallThunk = createAsyncThunk(
   "getproducts/products",
-   async () => {
+  async () => {
     try {
       const apiUrl = "https://fakestoreapi.com/products";
       const getProducts = await axios.get<IProduct[]>(apiUrl);
@@ -29,7 +29,8 @@ export interface IProductState {
   products: IProduct[];
   loading: boolean;
   error: string;
-  filterSearchProducts: string;
+  filterSearchQuery: string;
+  filterSearchProducts: [];
 }
 
 // IntialState....
@@ -37,15 +38,26 @@ const initialState: IProductState = {
   products: [],
   loading: true,
   error: "",
-  filterSearchProducts: '',
+  filterSearchQuery: "",
+  filterSearchProducts: [],
 };
 
 const productSlice = createSlice({
   name: "getproducts",
   initialState,
   reducers: {
-    searchFilterProduct: (state, action: PayloadAction<string>) => {
-     state.filterSearchProducts = action.payload
+    searchFilterQuery: (state, action: PayloadAction<string>) => {
+      state.filterSearchQuery = action.payload;
+    },
+    searchFilterProducts: (state, action) => {
+      state.filterSearchProducts.filter((products: IProduct) => {
+        console.log(
+          Object.values(products.title)
+            .join(" ")
+            .toLowerCase()
+            .includes(action.payload.toLowerCase())
+        );
+      });
     },
   },
   extraReducers: (builder) => {
@@ -63,5 +75,5 @@ const productSlice = createSlice({
   },
 });
 
-export const { searchFilterProduct } = productSlice.actions;
+export const { searchFilterQuery, searchFilterProducts } = productSlice.actions;
 export default productSlice.reducer;
