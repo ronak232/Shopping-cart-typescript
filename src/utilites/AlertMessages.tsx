@@ -1,13 +1,38 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 
-function showAlertMessages(show: "", mssg: "") {}
-
-function AlertMessages() {
-  const [first, setfirst] = useState<Object>({
-    show: "",
-    mssg: "",
-  });
-  return <div>AlertMessages</div>;
+interface CustomMessageProps {
+  showMessage: boolean;
+  message: string;
+  hideMessage: () => void;
 }
 
-export default AlertMessages;
+const CustomMessage: React.FC<CustomMessageProps> = ({
+  showMessage,
+  message,
+  hideMessage,
+}) => {
+  useEffect(() => {
+    let timer: ReturnType<typeof setTimeout>;
+    if (showMessage) {
+      timer = setTimeout(() => {
+        hideMessage();
+      }, 3000);
+    }
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [showMessage, hideMessage]);
+
+  return (
+    <>
+      {showMessage && (
+        <div className="custom-message">
+          <p>{message}</p>
+        </div>
+      )}
+    </>
+  );
+};
+
+export default CustomMessage;

@@ -1,11 +1,6 @@
-// html{
-//   min-height: 100%;
-// }
-
-
 body {
   font-family: "Josefin Sans", sans-serif !important;
-  font-weight:400;
+  font-weight: 500;
   font-size: 14px;
   font-style: normal;
   height: 100vh;
@@ -14,8 +9,8 @@ body {
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap");
 
 @import "./styles/footer";
-@import "./styles/skeleton.scss";
-@import "./styles/store";
-@import "./styles/cart.scss";
-@import "./styles/header.scss";
-@import "./styles/about.scss";
+@import "./styles/skeleton";
+@import "./styles/product";
+@import "./styles/cart";
+@import "./styles/header";
+@import "./styles/about";

@@ -28,7 +28,7 @@ export const Header = () => {
   };
 
   return (
-    <Navbar className="navbar-expand-lg shadow m-0 bg-cyan-50">
+    <Navbar className="navbar-expand-lg shadow-lg m-0 bg-cyan-50">
       <Container>
         <div className="flex items-center">
           <div>
