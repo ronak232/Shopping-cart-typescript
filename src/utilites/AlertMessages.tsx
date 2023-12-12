@@ -18,7 +18,6 @@ const CustomMessage: React.FC<CustomMessageProps> = ({
         hideMessage();
       }, 3000);
     }
-
     return () => {
       clearTimeout(timer);
     };

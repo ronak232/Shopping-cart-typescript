@@ -16,7 +16,7 @@ export const apiCallThunk = createAsyncThunk(
   "getproducts/products",
   async () => {
     try {
-      const apiUrl = "https://fakestoreapi.com/products";
+      const apiUrl = "https://fakestoreapi.com/products?limit=5";
       const getProducts = await axios.get<IProduct[]>(apiUrl);
       return getProducts.data;
     } catch (err) {

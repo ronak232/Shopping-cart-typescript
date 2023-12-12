@@ -15,13 +15,6 @@ export function Cart() {
 
   const [showDisableEmptyCart, setShowDisableEmptyCart] = useState(true);
 
-  // const toggleEmptyCartBtn = () =>{
-  //   if(cartItems.length > 0)  {
-  //     setShowDisableEmptyCart(showDisableEmptyCart)
-
-  //   }
-  // }
-
   const handleRemoveCartItem = (id: number) => {
     dispatch(handleRemove(id));
   };
@@ -36,28 +29,29 @@ export function Cart() {
   return (
     <>
       <Container>
-        <h2>Your Cart</h2>
+        <h2 className="my-4">Your Cart</h2>
         <Row>
           <Col sm={12} md={10} className="cart">
             {cartItems.length > 0 ? (
               cartItems?.map((items) => {
                 return (
-                <Link to="/store"> 
                   <Card
                     className="flex p-2 mb-2 mt-2 cart__product_list"
                     key={items.id}
                   >
-                    <div className="mb-2">
-                      <div>
-                        <Card.Img
-                          className="product__img w-100"
-                          src={items.image}
-                          alt=""
-                        />
+                    <Link to="/store" className="no-underline">
+                      <div className="mb-2">
+                        <div>
+                          <Card.Img
+                            className="product__img w-100"
+                            src={items.image}
+                            alt=""
+                          />
+                        </div>
+                        <h4 className="cart__product_title py-2 m-0">{items.title}</h4>
+                        <span>{formatCurrency(items.price)}</span>
                       </div>
-                      <h4 className="cart__product_title">{items.title}</h4>
-                      <span>{formatCurrency(items.price)}</span>
-                    </div>
+                    </Link>
                     <div className="flex flex-auto">
                       <button
                         className="bg-blue-400 rounded-lg px-3 py-0"
@@ -85,7 +79,6 @@ export function Cart() {
                       </div>
                     </div>
                   </Card>
-                  </Link> 
                 );
               })
             ) : (
@@ -106,14 +99,13 @@ export function Cart() {
             </div>
           </Col>
           <Col sm={12} md={2}>
-            <Card
-              className="w-100 bg-slate-300 px-4 my-2"
-              
-            >
+            <Card className="w-100 bg-slate-300 px-4 my-2">
               <h2>Your total amount:</h2>
               <span>$1000</span>
             </Card>
-            <button className="bg-sky-500 p-2 text-white rounded-lg hover:text-sky-400">Procced to Checkout</button>
+            <button className="bg-sky-500 p-2 text-white rounded-lg hover:text-sky-400">
+              Procced to Checkout
+            </button>
           </Col>
         </Row>
       </Container>

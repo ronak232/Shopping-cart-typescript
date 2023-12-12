@@ -1,12 +1,12 @@
 interface loadingtypeprops{
-  text?:string
+  text?:string | undefined
 }
 
 function SkeletonLoadingEffect(props : loadingtypeprops) {
   const classes = `skeleton ${props.text} skeleton-animation`;
   return (
     <div className={classes}>
-      <div></div>
+      <div className="contaniner"></div>
     </div>
   );
 }

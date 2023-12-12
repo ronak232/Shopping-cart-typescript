@@ -11,6 +11,7 @@ import { formatCurrency } from "../utilites/CurrencyFormatter";
 import SkeletonCard from "../components/SkeletonLoader/SkeletonCard";
 import { useEffect, useState } from "react";
 import CustomMessage from "../utilites/AlertMessages";
+import { Link } from "react-router-dom";
 
 const Store = () => {
   const { products, loading } = useSelector(
@@ -21,10 +22,14 @@ const Store = () => {
   const [addedProduct, setAddedProduct] = useState<IProduct | null>(null);
 
   useEffect(() => {
-    if (products !== null) {
-      setTimeout(() => {
-        dispatch(apiCallThunk());
-      }, 1000);
+    try {
+      if (products !== null) {
+        setTimeout(() => {
+          dispatch(apiCallThunk());
+        }, 1000);
+      }
+    } catch {
+      throw "API is Down...";
     }
   }, []);
 
@@ -45,19 +50,19 @@ const Store = () => {
   return (
     <>
       <Container>
-        <Row className="m-auto">
+        <Row className="mt-4">
           {!loading
             ? products?.map((items, index) => {
                 return (
-                  <Col md={4} className="product mt-2 mb-2" key={index}>
-                    <Card className="product__cardp p-2 h-100">
+                  <Col md={4} className="product mb-2" key={index}>
+                    <Card className="product__cardp p-2 h-100 shadow-md">
                       <Card.Img
                         className="product__img bg-cover h-full"
                         src={items.image}
                         alt=""
                         loading="lazy"
                       />
-                      <h4 className="product__title truncate">{items.title}</h4>
+                      <Link to="/" className="product__title truncate py-2">{items.title}</Link>
                       <span>{formatCurrency(items.price)}</span>
                       <Button
                         className=""

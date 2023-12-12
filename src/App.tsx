@@ -6,7 +6,6 @@ import { Header } from "./components/Header";
 import { Cart } from "./pages/Cart";
 // import Footer from "./components/Footer";
 import React, { Suspense } from "react";
-import SkeletonCard from "./components/SkeletonLoader/SkeletonCard";
 // import Footer from "./components/Footer";
 
 // Lazy Loading the store page
@@ -23,7 +22,7 @@ function App() {
           <Route
             path="/store"
             element={
-              <Suspense fallback={<SkeletonCard />}>
+              <Suspense>
                 <PagesProductList />
               </Suspense>
             }
